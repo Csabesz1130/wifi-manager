@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Network {
+  id        String   @id @default(cuid())
+  ssid      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// File: prisma/schema.prisma
+// Purpose: This file defines the database schema for the WiFi Manager application.
+//
+// Models:
+// - Network: Represents a WiFi network in the database.
+//   Fields:
+//   - id: Unique identifier for the network
+//   - ssid: The name of the WiFi network
+//   - password: The password for the WiFi network
+//   - createdAt: Timestamp of when the network was added
+//   - updatedAt: Timestamp of when the network was last updated
+//
+// Notable elements:
+// - Uses PostgreSQL as the database provider
+// - Implements automatic timestamp fields (createdAt, updatedAt)
+// - Uses CUID for generating unique identifiers
